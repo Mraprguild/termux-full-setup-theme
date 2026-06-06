@@ -1,0 +1,14 @@
+#!/data/data/com.termux/files/usr/bin/bash
+DIR="$HOME/.termux-welcome"
+case "${1:-manager}" in
+  manager|"") exec bash "$DIR/setup-manager.sh" ;;
+  theme) exec bash "$DIR/theme-manager.sh" ;;
+  config) exec "${EDITOR:-nano}" "$DIR/config.conf" ;;
+  preview|welcome) exec bash "$DIR/welcome.sh" ;;
+  reload) termux-reload-settings ;;
+  uninstall) exec bash "$DIR/uninstall.sh" ;;
+  *)
+    echo "Usage: tw [manager|theme|config|preview|reload|uninstall]"
+    exit 1
+    ;;
+esac
